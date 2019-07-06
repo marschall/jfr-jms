@@ -115,7 +115,7 @@ final class JfrMessageProducer implements MessageProducer {
 
   @Override
   public void send(Destination destination, Message message) throws JMSException {
-    JmsSendEvent event = newSendEvent(DestinationUtil.getDestinationName(destination));
+    JmsSendEvent event = newSendEvent(destination);
     event.begin();
     try {
       delegate.send(destination, message);
@@ -128,7 +128,7 @@ final class JfrMessageProducer implements MessageProducer {
   @Override
   public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive)
       throws JMSException {
-    JmsSendEvent event = newSendEvent(DestinationUtil.getDestinationName(destination));
+    JmsSendEvent event = newSendEvent(destination);
     event.begin();
     try {
       delegate.send(destination, message, deliveryMode, priority, timeToLive);
@@ -161,7 +161,7 @@ final class JfrMessageProducer implements MessageProducer {
   @Override
   public void send(Destination destination, Message message, CompletionListener completionListener)
       throws JMSException {
-    JmsSendEvent event = newSendEvent(DestinationUtil.getDestinationName(destination));
+    JmsSendEvent event = newSendEvent(destination);
     event.begin();
     try {
       delegate.send(destination, message, completionListener);
@@ -174,7 +174,7 @@ final class JfrMessageProducer implements MessageProducer {
   @Override
   public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive,
       CompletionListener completionListener) throws JMSException {
-    JmsSendEvent event = newSendEvent(DestinationUtil.getDestinationName(destination));
+    JmsSendEvent event = newSendEvent(destination);
     event.begin();
     try {
       delegate.send(destination, message, deliveryMode, priority, timeToLive, completionListener);
@@ -182,6 +182,10 @@ final class JfrMessageProducer implements MessageProducer {
       event.end();
       event.commit();
     }
+  }
+
+  private static JmsSendEvent newSendEvent(Destination destination) {
+    return newSendEvent(destination);
   }
 
   private static JmsSendEvent newSendEvent(String destinationName) {

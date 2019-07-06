@@ -37,7 +37,16 @@ public class JfrJMSContext implements JMSContext {
 
   @Override
   public JMSProducer createProducer() {
-    return this.delegate.createProducer();
+    JmsOperationEvent event = newJMSContextEvent("createProducer");
+    event.begin();
+    JMSProducer producer;
+    try {
+      producer = this.delegate.createProducer();
+    } finally {
+      event.end();
+      event.commit();
+    }
+    return new JfrJMSProducer(producer);
   }
 
   @Override
@@ -87,7 +96,14 @@ public class JfrJMSContext implements JMSContext {
 
   @Override
   public void close() {
-    this.delegate.close();
+    JmsOperationEvent event = newJMSContextEvent("close");
+    event.begin();
+    try {
+      this.delegate.close();
+    } finally {
+      event.end();
+      event.commit();
+    }
   }
 
   @Override
@@ -142,17 +158,38 @@ public class JfrJMSContext implements JMSContext {
 
   @Override
   public void commit() {
-    this.delegate.commit();
+    JmsOperationEvent event = newJMSContextEvent("commit");
+    event.begin();
+    try {
+      this.delegate.commit();
+    } finally {
+      event.end();
+      event.commit();
+    }
   }
 
   @Override
   public void rollback() {
-    this.delegate.rollback();
+    JmsOperationEvent event = newJMSContextEvent("rollback");
+    event.begin();
+    try {
+      this.delegate.rollback();
+    } finally {
+      event.end();
+      event.commit();
+    }
   }
 
   @Override
   public void recover() {
-    this.delegate.recover();
+    JmsOperationEvent event = newJMSContextEvent("recover");
+    event.begin();
+    try {
+      this.delegate.recover();
+    } finally {
+      event.end();
+      event.commit();
+    }
   }
 
   @Override
@@ -237,7 +274,21 @@ public class JfrJMSContext implements JMSContext {
 
   @Override
   public void acknowledge() {
-    this.delegate.acknowledge();
+    JmsOperationEvent event = newJMSContextEvent("acknowledge");
+    event.begin();
+    try {
+      this.delegate.acknowledge();
+    } finally {
+      event.end();
+      event.commit();
+    }
+  }
+
+  private static JmsOperationEvent newJMSContextEvent(String operationName) {
+    JmsOperationEvent event = new JmsOperationEvent();
+    event.operationObject = "JMSContext";
+    event.operationName = operationName;
+    return event;
   }
 
 }

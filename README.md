@@ -34,5 +34,6 @@ The implementation is based around wrapper objects.
 
 * no reflection
 * no string concatenation
-* we call `javax.jms.Queue#getQueueName()` and `javax.jms.Topic#getTopicName()` from time to time
+
+We assume `javax.jms.Queue#getQueueName()` and `javax.jms.Topic#getTopicName()` are simple getters.
 

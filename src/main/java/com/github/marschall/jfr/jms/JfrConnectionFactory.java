@@ -7,10 +7,18 @@ import javax.jms.ConnectionFactory;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 
+/**
+ * A connection factory that wraps an other one and generates Flight Recorder events.
+ */
 public class JfrConnectionFactory implements ConnectionFactory {
 
   private final ConnectionFactory delegate;
 
+  /**
+   * Constructs a new JFR connection factory.
+   * 
+   * @param delegate the actual connection factory to delegate to, not {@code null}
+   */
   public JfrConnectionFactory(ConnectionFactory delegate) {
     Objects.requireNonNull(delegate, "delegate");
     this.delegate = delegate;

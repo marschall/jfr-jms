@@ -21,10 +21,18 @@ import javax.jms.TemporaryTopic;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 
+/**
+ * A JMS context that wraps an other one and generates Flight Recorder events.
+ */
 public class JfrJMSContext implements JMSContext {
 
   private final JMSContext delegate;
 
+  /**
+   * Constructs a new JFR JMS context.
+   * 
+   * @param delegate the actual JMS context to delegate to, not {@code null}
+   */
   public JfrJMSContext(JMSContext delegate) {
     Objects.requireNonNull(delegate, "delegate");
     this.delegate = delegate;

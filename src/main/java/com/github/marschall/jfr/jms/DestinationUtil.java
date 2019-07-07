@@ -11,6 +11,14 @@ final class DestinationUtil {
     throw new AssertionError("not instantiable");
   }
 
+  static String getQueueNameSafe(Queue queue) {
+    try {
+      return queue.getQueueName();
+    } catch (JMSException e) {
+      return "<JMSException>";
+    }
+  }
+
   static String getDestinationName(Destination destination) {
     try {
       if (destination instanceof Queue) {

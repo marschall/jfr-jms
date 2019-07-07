@@ -230,12 +230,16 @@ final class JfrSession implements Session {
 
   @Override
   public QueueBrowser createBrowser(Queue queue) throws JMSException {
-    return this.delegate.createBrowser(queue);
+    QueueBrowser browser = this.delegate.createBrowser(queue);
+    String queueName = DestinationUtil.getQueueNameSafe(queue);
+    return new JfrQueueBrowser(browser, queueName, null);
   }
 
   @Override
   public QueueBrowser createBrowser(Queue queue, String messageSelector) throws JMSException {
-    return this.delegate.createBrowser(queue, messageSelector);
+    QueueBrowser browser = this.delegate.createBrowser(queue);
+    String queueName = DestinationUtil.getQueueNameSafe(queue);
+    return new JfrQueueBrowser(browser, queueName, messageSelector);
   }
 
   @Override

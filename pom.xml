@@ -6,7 +6,7 @@
   <version>0.1.0-SNAPSHOT</version>
   <inceptionYear>2019</inceptionYear>
   <name>JFR JMS</name>
-  <description>A JMS wrapper that generates JFR events.</description>
+  <description>A JMS driver that generates JFR events.</description>
 
   <url>https://github.com/marschall/jfr-jms</url>
 

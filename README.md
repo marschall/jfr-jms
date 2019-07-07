@@ -1,7 +1,7 @@
 JFR JMS [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jms/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.marschall/jfr-jms) [![Javadocs](https://www.javadoc.io/badge/com.github.marschall/jfr-jms.svg)](https://www.javadoc.io/doc/com.github.marschall/jfr-jms)
 =======
 
-A JDBC driver that wraps an other JDBC driver and generates JFR events.
+A JMS driver that wraps an other JDBC driver and generates JFR events.
 
 ```xml
 <dependency>

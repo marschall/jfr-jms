@@ -3,9 +3,9 @@ package com.github.marschall.jfr.jms;
 import java.util.Enumeration;
 import java.util.Objects;
 
-import javax.jms.JMSException;
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
+import jakarta.jms.JMSException;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
 
 final class JfrQueueBrowser implements QueueBrowser {
   

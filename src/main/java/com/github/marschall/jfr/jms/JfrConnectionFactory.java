@@ -2,10 +2,10 @@ package com.github.marschall.jfr.jms;
 
 import java.util.Objects;
 
-import javax.jms.Connection;
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSContext;
-import javax.jms.JMSException;
+import jakarta.jms.Connection;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSException;
 
 /**
  * A connection factory that wraps an other one and generates Flight Recorder events.

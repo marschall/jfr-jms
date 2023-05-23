@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 
-import javax.jms.CompletionListener;
-import javax.jms.Destination;
-import javax.jms.JMSProducer;
-import javax.jms.Message;
+import jakarta.jms.CompletionListener;
+import jakarta.jms.Destination;
+import jakarta.jms.JMSProducer;
+import jakarta.jms.Message;
 
 final class JfrJMSProducer implements JMSProducer {
 

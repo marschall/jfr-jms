@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.jms.ConnectionFactory;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Queue;
-import javax.jms.QueueBrowser;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
+import jakarta.jms.QueueBrowser;
+import jakarta.jms.Session;
+import jakarta.jms.TextMessage;
 
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
 import org.junit.Before;
@@ -22,6 +22,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.jms.core.JmsOperations;
 import org.springframework.jms.core.JmsTemplate;
+
+import com.github.marschall.jakartajmsadapter.JakartaQueueConnectionFactory;
 
 public class JfrConnectionFactoryTest {
 
@@ -32,7 +34,7 @@ public class JfrConnectionFactoryTest {
 
   @Before
   public void setUp() {
-    ConnectionFactory connectionFactory = broker.createConnectionFactory();
+    ConnectionFactory connectionFactory = new JakartaQueueConnectionFactory(broker.createConnectionFactory());
     this.template = new JmsTemplate(new JfrConnectionFactory(connectionFactory));
   }
 
